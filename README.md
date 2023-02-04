@@ -1,7 +1,7 @@
-# streaming-04-multiple-consumers
+# streaming-05-smart-smoker
 ### Tanya Fagaly
 ### February 4, 2023
- https://github.com/RealNumberI/streaming-04-multiple-consumers.git
+https://github.com/RealNumberI/streaming-05-smart-smoker
 
 > Use RabbitMQ to distribute tasks to multiple workers
 
@@ -18,7 +18,7 @@ One process will create task messages. Multiple worker processes will share the 
 ## Read
 
 1. Read the [RabbitMQ Tutorial - Work Queues](https://www.rabbitmq.com/tutorials/tutorial-two-python.html)
-1. Read the code and comments in this repo.
+1. 
 
 ## RabbitMQ Admin 
 
