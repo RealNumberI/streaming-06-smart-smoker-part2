@@ -29,5 +29,11 @@ The output is a string of binary that represents the timestamp and temperature d
 ## The program
 The program retrieves the data and converts it into binary messages.  It then creates a producer to send the messages.
 
+# Instructions
+1. Open a terminal.
+2. With the csv file in the same location as the .py file, run the python file.
+3. When you want to stop the message, hit ctl-C in the terminal window.
+
 ## Screenshot showing the timestamps of the messages sent.
 ![Screenshot]( A5Screenshot.png )
+
