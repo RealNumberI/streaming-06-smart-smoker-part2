@@ -1,7 +1,7 @@
-## streaming-05-smart-smoker
+## streaming-06-smart-smoker-part2
 # Tanya Fagaly
-# February 4, 2023
-https://github.com/RealNumberI/streaming-05-smart-smoker
+# February 11, 2023
+https://github.com/RealNumberI/streaming-06-smart-smoker-part2
 
 > Use RabbitMQ to distribute tasks to multiple workers
 
