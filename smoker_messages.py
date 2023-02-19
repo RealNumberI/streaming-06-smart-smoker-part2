@@ -109,7 +109,7 @@ Open the csv file, read it into tuples/list, send messages to tuples, send out m
             send_message (host, "02-food-A", food_a_message)
             send_message (host, "03-food-B", food_b_message)
             # Slow messages
-            time.sleep(30)
+            time.sleep(5)
 
 
 # Define variables

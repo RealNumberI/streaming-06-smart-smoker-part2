@@ -26,14 +26,16 @@ The data contains a header row.
 ## The output
 The output is a string of binary that represents the timestamp and temperature data
 
-## The program
-The program retrieves the data and converts it into binary messages.  It then creates a producer to send the messages.
+## The programs
+The program smoker_messages.py retrieves the data and converts it into binary messages.  It then creates a producer to send the messages.
+The program smoker-consumer.py reads the messages from the producer and prints warnings if the data says that a tmperature crosses over a threshold.
 
 # Instructions
-1. Open a terminal.
-2. With the csv file in the same location as the .py file, run the python file.
-3. When you want to stop the message, hit ctl-C in the terminal window.
+1. Open two anaconda terminals.  
+2. With the csv file in the same location as the .py file, run the smoker_messages.py file in one terminal.  
+3. In the other terminal, run the smoer-consumer.py file in it.
+4. When you want to stop the message, hit ctl-C in the terminal window.  This will stop the program in both windows.
 
 ## Screenshot showing the timestamps of the messages sent.
-![Screenshot]( A5Screenshot.png )
+![Screenshot]( TerminalScreenshots.png )
 
