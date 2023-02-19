@@ -28,7 +28,7 @@ The output is a string of binary that represents the timestamp and temperature d
 
 ## The programs
 The program smoker_messages.py retrieves the data and converts it into binary messages.  It then creates a producer to send the messages.
-The program smoker-consumer.py reads the messages from the producer and prints warnings if the data says that a tmperature crosses over a threshold.
+The program smoker-consumer.py reads the messages from the producer and prints warnings if the data says that a temperature crosses over a threshold.
 
 # Instructions
 1. Open two anaconda terminals.  
