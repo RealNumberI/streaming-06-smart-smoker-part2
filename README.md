@@ -3,9 +3,9 @@
 # February 11, 2023
 https://github.com/RealNumberI/streaming-06-smart-smoker-part2
 
-> Use RabbitMQ to distribute tasks to multiple workers
+> Use RabbitMQ to distribute tasks to a consumer
 
-One process will create task messages. Multiple worker processes will share the work. 
+One process will create task messages. A consumer will read the messages. 
 
 ## The Problem / Challenge To Solve
 
