@@ -40,23 +40,24 @@ def delete_old_queue(host: str, old_queue: str):
     # use the channel to delete the queue
     ch.queue_delete(queue=old_queue)    
     # Run the delete queue function the queues
+    
 
 # FUNCTION: Receive messages 
 def smoker_callback(ch, method, properties, body):
     """ Get a message about the smoker temperature."""
-    # decode the binary message body to a string
-    smoker_message = body.decode().split(",")
+    # decode the binary message body to a string, append to a deque, and print that it has been received.
+    smoker_message = body.decode()
+    smoker_deque.append(smoker_message) 
     print(f" [x] Received Smoker {smoker_message}")
-    # Add to deque and split temp and time
-    smoker_split_list= smoker_deque.append(smoker_message) 
-        # Get first temp from deque which is the from the message 5 messages ago, since the whole list is limited to 5.
-    smoker_first_temp = round(float(smoker_split_list[0]),1)
+    # split the deque between temp and time and identify the first and last items in the deque.  Print them.
+    smoker_deque_split = smoker_deque.split(",")
+    smoker_first_temp = float(smoker_deque_split[0])
+    smoker_last_temp = float(smoker_deque_split[-1])
     print("first: ", smoker_first_temp)
-    # Get smoker last item
-    smoker_last_temp = round(float(smoker_split_list[-1]),1)
     print("last: ",smoker_last_temp)
+    # Find the difference between the temps
     smoker_warning_temp = smoker_last_temp-smoker_first_temp
-    #print temp or warning
+    # print temp or warning if it meets the criteria
     if smoker_warning_temp < -15:
         print("The smoker temperature decreased by more than 15 degrees F in 2.5 minutes (smoker alert!)")
     else:
