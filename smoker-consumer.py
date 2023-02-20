@@ -45,15 +45,11 @@ def delete_old_queue(host: str, old_queue: str):
 def smoker_callback(ch, method, properties, body):
     """ Get a message about the smoker temperature."""
     # decode the binary message body to a string
-    smoker_message = body.decode()
+    smoker_message = body.decode().split(",")
     print(f" [x] Received Smoker {smoker_message}")
-    # acknowledge the message was received and processed 
-    # (now it can be deleted from the queue)
-    ch.basic_ack(delivery_tag=method.delivery_tag)
     # Add to deque and split temp and time
-    smoker_unsplit_list= food_a_deque.append(smoker_message) 
-    smoker_split_list = smoker_unsplit_list.split(", ")
-    # Get first temp from deque which is the from the message 5 messages ago, since the whole list is limited to 5.
+    smoker_split_list= smoker_deque.append(smoker_message) 
+        # Get first temp from deque which is the from the message 5 messages ago, since the whole list is limited to 5.
     smoker_first_temp = round(float(smoker_split_list[0]),1)
     print("first: ", smoker_first_temp)
     # Get smoker last item
@@ -65,7 +61,9 @@ def smoker_callback(ch, method, properties, body):
         print("The smoker temperature decreased by more than 15 degrees F in 2.5 minutes (smoker alert!)")
     else:
         print("Smoker temp is ", smoker_last_temp)
-
+    # acknowledge the message was received and processed 
+    # (now it can be deleted from the queue)
+    ch.basic_ack(delivery_tag=method.delivery_tag)       
 
 # FUNCTION: Food A callback - defines warning
 def food_a_callback(ch, method, properties, body):
@@ -73,9 +71,8 @@ def food_a_callback(ch, method, properties, body):
     # decode the binary message body to a string
     food_a_message = body.decode()
     print(f" [x] Received Smoker {food_a_message}")
-       # acknowledge the message was received and processed 
-    # (now it can be deleted from the queue)
-    ch.basic_ack(delivery_tag=method.delivery_tag)
+    # acknowledge the message was received and processed 
+
     # Add to deque and split temp and time
     food_a_unsplit_list= food_a_deque.append(food_a_message) 
     food_a_split_list = food_a_unsplit_list.split(", ")
@@ -89,6 +86,9 @@ def food_a_callback(ch, method, properties, body):
         print("Food A temp change in temp is 1 F or less in 10 min (or 20 readings)  --> food stall alert!")
     else:
         print("Food A temp is ", food_a_last_temp)
+     # acknowledge the message was received and processed 
+     # (now it can be deleted from the queue)
+    ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
 # FUNCTION: Food B callback - defines warning
@@ -97,9 +97,8 @@ def food_b_callback(ch, method, properties, body):
     # decode the binary message body to a string
     food_b_message = body.decode()
     print(f" [x] Received Smoker {food_b_message}")
-       # acknowledge the message was received and processed 
-    # (now it can be deleted from the queue)
-    ch.basic_ack(delivery_tag=method.delivery_tag)
+    # acknowledge the message was received and processed 
+
     # Add to deque and split temp and time
     food_b_unsplit_list= food_a_deque.append(food_b_message) 
     food_b_split_list = food_b_unsplit_list.split(", ") 
@@ -113,7 +112,9 @@ def food_b_callback(ch, method, properties, body):
         print("Food B temp change in temp is 1 F or less in 10 min (or 20 readings)  --> food stall alert!")
     else:
         print("Food B temp is ", food_b_last_temp)
-
+    # acknowledge the message was received and processed  
+    # (now it can be deleted from the queue)
+    ch.basic_ack(delivery_tag=method.delivery_tag)
 
 # define a main function to run the program
 def main(hn: str, qn1: str, qn2: str, qn3: str ):
